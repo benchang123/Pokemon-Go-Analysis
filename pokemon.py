@@ -3,7 +3,6 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 
 df = pd.read_csv('pokemoncomplete.csv', index_col=0, encoding= 'unicode_escape')
-print(df.head())
 
 total_stats=df.sort_values("Total",ascending=False)
 
@@ -11,23 +10,7 @@ df.to_numpy
 df.describe()
 df.sort_values(by="Speed")
 
-df[df['Total'] > 599]
-
-
-
-
-
-sns.lmplot(x='Attack', y='Defense', data=df,
-           fit_reg=False)   # Color by evolution stage
-
-# Pre-format DataFrame
-stats_df = df.drop(['Legendary', 'Generation'], axis=1)
- 
-# New boxplot using stats_df
-sns.boxplot(data=stats_df)
-
-# Set theme
-sns.set_style('whitegrid')
+# df[df['Total'] > 599]
 
 pkmn_type_colors = ['#78C850',  # Grass
                     '#F08030',  # Fire
@@ -45,17 +28,24 @@ pkmn_type_colors = ['#78C850',  # Grass
                     '#98D8D8',  # Ice
                     '#7038F8',  # Dragon
                    ]
-plt.figure(figsize=(10,6))
-# Violin plot with Pokemon color palette
-sns.violinplot(x='Type 1', y='Total', data=df, 
-               palette=pkmn_type_colors) # Set color palette
 
-sns.swarmplot(x='Type 1', y='Total', data=df, 
-              palette=pkmn_type_colors)
+# Set theme
+sns.set_style('whitegrid')
+plt.figure(0,figsize=(10,6))
+# Pre-format DataFrame
+stats_df = df.drop(['Legendary', 'Generation'], axis=1)
+# New boxplot using stats_df
+sns.boxplot(data=stats_df, palette=pkmn_type_colors)
+
+# Violin plot with Pokemon color palette
+plt.figure(1,figsize=(10,6))
+sns.violinplot(x='Type 1', y='Total', data=df,palette=pkmn_type_colors) # Set color palette
 
 # Set figure size with matplotlib
-plt.figure(figsize=(10,6))
- 
+plt.figure(2,figsize=(10,6))
+sns.swarmplot(x='Type 1', y='Total', data=df,palette=pkmn_type_colors)
+
+plt.figure(3,figsize=(10,6))
 # Create plot
 sns.violinplot(x='Type 1',
                y='Total', 

@@ -3,7 +3,7 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 
 # Read in data
-df = pd.read_csv('pokemoncomplete.csv', index_col=0, encoding= 'unicode_escape')
+df = pd.read_csv('C:/Users/bench/Documents/Python Scripts/Scripts/Pokemon/pokemoncomplete.csv', index_col=0, encoding= 'unicode_escape')
 
 total_stats=df.sort_values("Total",ascending=False)
 

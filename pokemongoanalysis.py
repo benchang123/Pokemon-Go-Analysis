@@ -1,29 +1,40 @@
 import pandas as pd
 import seaborn as sns
+import numpy as np
+import scipy
 from matplotlib import pyplot as plt
-from sklearn.linear_model import LinearRegression
 
 # Read in data
 df = pd.read_csv('C:/Users/bench/Documents/Python Scripts/Scripts/Pokemon/pokemongo.csv', index_col=0, encoding= 'unicode_escape')
-df.describe()
 df["Total"]=df['Att']+df['Def']+df['Sta']
+df.describe()
 
 df.sort_values("Total",ascending=False)
 
-plt.figure(0,figsize=(15,5))
-sns.lmplot(x='Att', y='MaxCP', data=df)
+calclist=['Att','Def','Sta','Total']
 
-plt.figure(1,figsize=(15,5))
-sns.lmplot(x='Def', y='MaxCP', data=df)
+for stat in calclist:
+    slope_stat, intercept_stat, rvalue_stat, pvalue_stat, std_stat = scipy.stats.linregress(df['MaxCP'],df[stat])
+    r_squared_stat=rvalue_stat**2
+    
+    print("Statistical Values for "+stat)
+    print("Slope: "+str(round(slope_stat,2)))
+    print("Intercept: "+str(round(intercept_stat,2)))
+    print("Error: "+str(round(std_stat,4)))
+    print("R^2: "+str(round(r_squared_stat,2))+'\n')
 
-plt.figure(2,figsize=(15,5))
-sns.lmplot(x='Sta', y='MaxCP', data=df)
+    ax=sns.lmplot(x=stat, y='MaxCP', data=df)
+    ax.fig.suptitle(stat+" vs Max CP")
 
-plt.figure(3,figsize=(15,5))
-sns.lmplot(x='Total', y='MaxCP', data=df)
+plt.figure(figsize=(15,5))
+sns.distplot(df.MaxCP).set_title('Distribution of Max CP')
 
-sns.distplot(df.MaxCP)
+plt.figure(figsize=(15,5))
+sns.distplot(df.Total).set_title('Distribution of Total')
 
-# model = LinearRegression()
-# X, y = df[['NumberofEmployees','ValueofContract']], df.AverageNumberofTickets
-# model.fit(X, y)
+
+
+
+plt.figure(figsize=(15,5))
+sns.boxplot(df['Type1'],df['MaxCP'],data=df)
+

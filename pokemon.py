@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 # Read in data
 df = pd.read_csv('C:/Users/bench/Documents/Python Scripts/Scripts/Pokemon/pokemoncomplete.csv', index_col=0, encoding= 'unicode_escape')
-df2 = pd.read_csv('C:/Users/bench/Documents/Python Scripts/Scripts/Pokemon/pokemongo.csv', index_col=0, encoding= 'unicode_escape')
+df2 = pd.read_csv('pokemongo.csv', index_col=0, encoding= 'unicode_escape')
 
 df2["Total"]=df2['Att']+df2['Def']+df2['Sta']
 df2.describe()

@@ -18,7 +18,7 @@ pokemongolist=df2["Name"].tolist()
 pokemonlist=[]
 
 for pokemon in df['Name']:
-    if pokemon.upper()==df2.loc[:,'Name']:
+    if pokemon.upper()==df2[df2['Name']]:
         pokemonlist=df['Name']
 
 

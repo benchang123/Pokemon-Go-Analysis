@@ -6,7 +6,7 @@ import os
 from sklearn import linear_model as m
 
 #set working path
-default_path='/Users/bench/Documents/Python Scripts/Scripts/Pokemon'
+default_path='/Users/bench/Documents/Python Scripts/Pokemon'
 os.chdir(default_path)
 
 

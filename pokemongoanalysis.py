@@ -22,7 +22,7 @@ poke_game.drop(columns=['Type 1','Type 2','Legendary'], inplace=True)
 poke_game.rename(columns={'Attack':'Attack_g','Defense':'Defense_g'}, inplace=True)
 
 # Inspect NaN
-poke_go.isna().sum()
+display(poke_go.isna().sum())
 poke_game.isna().sum()
 
 poke_go['Name']=poke_go['Name'].str.lower()
@@ -37,6 +37,7 @@ poke_go_compare.rename(columns={'Generation_x':'Generation'}, inplace=True)
 # Find Missing Pokemons during Merge
 missing=poke_go.loc[poke_go['Pokedex'].isin(poke_go_compare['Pokedex'])==False,'Name']
 
+# Code
 # Eventually try to add missing pokemons!!!
 
 poke_go_complete=poke_go.merge(poke_game,left_on='Name',right_on='Name', how='inner')
@@ -87,6 +88,15 @@ error
 
 model.coef_
 
+#Residual Plot
+
+residual=poke_go_complete.loc[:,['MaxCP','predCP']].diff(axis=1)
+residual.drop(columns='MaxCP',inplace=True)
+poke_go_complete['Game Residual']=residual.rename(columns={'predCP':'Residual'})
+residual
+
+sns.lmplot(data=poke_go_complete,x='predCP',y='Game Residual')
+
 # Model using Pokemon Go Stats
 
 model2=m.LinearRegression()
@@ -99,6 +109,15 @@ error2=rmse(poke_go_complete['pokegopred'],poke_go_complete['MaxCP'])
 error2
 
 model2.coef_
+
+#Residual Plot
+
+residual=poke_go_complete.loc[:,['MaxCP','pokegopred']].diff(axis=1)
+residual.drop(columns='MaxCP',inplace=True)
+poke_go_complete['Go Residual']=residual.rename(columns={'pokegopred':'Residual'})
+residual
+
+sns.lmplot(data=poke_go_complete,x='pokegopred',y='Go Residual')
 
 # Determine Pokemon with Biggest Error
 

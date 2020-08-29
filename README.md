@@ -10,6 +10,6 @@ The purpose of this analysis is to see which statistics correlates the most to a
 
 I also am interested to predict the CP of the Pokemons that will be released in the near future. This will help me anticipate which pokemons will be strong upon release.
 
-### Analysis of the Strongest Pokemon Type in Pokemon GO
+### Analysis of the Strongest and Weakest Pokemon Species in Pokemon GO
 
-Upon analyzing the CP and statistics of the Pokemons, I want to see which type of Pokemon is the strongest.
+Upon analyzing the CP and statistics of the Pokemons, I want to see which Pokemons are the strongest to use in Pokemon GO.

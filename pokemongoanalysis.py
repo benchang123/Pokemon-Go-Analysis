@@ -22,7 +22,7 @@ poke_go.drop(columns=['Legendary'], inplace=True)
 poke_game.loc[poke_game.index.isin([647,648,649]),['Legendary']]=True
 
 # Inspect NaN
-display(poke_go.isna().sum())
+print(poke_go.isna().sum())
 poke_game.isna().sum()
 
 poke_go['Name']=poke_go['Name'].str.lower()

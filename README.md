@@ -1,15 +1,98 @@
-# Pokemon Go Analysis
+# Pokemon GO Analysis
 
-## Purpose of the Analysis:
+A data analysis project exploring the relationship between Pokemon statistics and Combat Power (CP) in Pokemon GO.
 
-### Find the formula for CP
+## Overview
 
-The purpose of this analysis is to see which statistics correlates the most to a Pokemon's CP in the game Pokemon GO. I am a lifelong Pokemon fan who often look at the statistics of the Pokemon to determine which Pokemon is best to build a strong team. When Pokemon Go was released, they introduced a new statistics called CP, which had me wondering what makes up the CP. 
+This project analyzes Pokemon data to:
+1. **Discover the CP Formula** - Identify which statistics correlate most strongly with a Pokemon's CP
+2. **Predict Future CP** - Forecast CP values for upcoming Pokemon generations
+3. **Rank Pokemon Strength** - Determine the strongest and weakest Pokemon in Pokemon GO
 
-### Prediction of the 6th Generation Pokemon's CP
+## Project Structure
 
-I also am interested to predict the CP of the Pokemons that will be released in the near future. This will help me anticipate which pokemons will be strong upon release.
+```
+Pokemon/
+├── pokemongoanalysis.py    # Main analysis script (PokemonAnalyzer class)
+├── Pokemon Go Writeup.ipynb # Jupyter notebook with detailed analysis
+├── pogo.csv                 # Pokemon GO stats dataset
+├── pokemoncomplete.csv      # Complete Pokemon game stats dataset
+└── README.md
+```
 
-### Analysis of the Strongest and Weakest Pokemon Species in Pokemon GO
+## Installation
 
-Upon analyzing the CP and statistics of the Pokemons, I want to see which Pokemons are the strongest to use in Pokemon GO.
+### Requirements
+- Python 3.7+
+- Required packages:
+  ```
+  pandas
+  numpy
+  seaborn
+  matplotlib
+  scikit-learn
+  ```
+
+### Setup
+```bash
+pip install pandas numpy seaborn matplotlib scikit-learn
+```
+
+## Usage
+
+### Run the Complete Analysis
+```python
+from pokemongoanalysis import PokemonAnalyzer
+
+analyzer = PokemonAnalyzer()
+analyzer.run_complete_analysis()
+```
+
+### Run Individual Steps
+```python
+analyzer = PokemonAnalyzer()
+analyzer.load_data()
+analyzer.preprocess_data()
+analyzer.merge_datasets()
+analyzer.create_visualizations()
+analyzer.build_models()
+analyzer.analyze_strongest_pokemon()
+```
+
+### Command Line
+```bash
+python pokemongoanalysis.py
+```
+
+## Analysis Methods
+
+### Data Processing
+- Merges Pokemon GO stats with traditional game stats
+- Handles missing values and normalizes Pokemon names
+- Identifies legendary Pokemon for separate analysis
+
+### Statistical Models
+- **Linear Regression** on game stats (HP, Attack, Defense, Sp. Atk, Sp. Def, Speed)
+- **Linear Regression** on Pokemon GO stats (Attack, Defense, Stamina)
+- RMSE evaluation for model accuracy
+
+### Visualizations
+- Correlation heatmaps for both game and Pokemon GO stats
+- CP distribution histograms
+- Box plots of Max CP by Pokemon type
+
+## Key Findings
+
+The analysis reveals:
+- Which base stats contribute most to CP calculation
+- Correlation between traditional game stats and Pokemon GO performance
+- Rankings of strongest Pokemon (legendary and non-legendary)
+
+## Data Sources
+
+- `pogo.csv` - Pokemon GO specific stats (MaxCP, Attack, Defense, Stamina, Types)
+- `pokemoncomplete.csv` - Traditional Pokemon game stats across all generations
+
+## License
+
+This project is for educational and personal analysis purposes.
